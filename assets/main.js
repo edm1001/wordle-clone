@@ -32,7 +32,21 @@ document.addEventListener("DOMContentLoaded", () => {
         if (currentWordArr.length !== 5 ) {
             window.alert("Must Be 5 letters")
         }
+        const currentWord = currentWordArr.join('');
+
+        if (currentWord === word) {
+            window.alert("Word Created")
+            
+        }
+        if (guessedWords.length === 6) {
+            window.alert(`The Word is ${word} , better luck next time!`)
+        }
+
+        guessedWords.push([]);
     }
+
+
+
     // create boxed for the letters
     function createBoxes() {
         const gameBoard = document.getElementById("board");

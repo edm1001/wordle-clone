@@ -9,6 +9,20 @@ body {
     background-color: black;
 
 }
+#container {
+    display: flex;
+    background-color: black;
+    align-items: center;
+    flex-direction: column;
+    height: 100%;
+
+}
+#game {
+    width: 100%;
+    max-width: 500px;
+    height: 100%;
+}
+
 
 header{
     border-bottom: 1px solid white;
@@ -27,6 +41,7 @@ header{
     align-items: center;
     flex-grow: 1;
     overflow: hidden;
+    border-bottom: 100px;
 }
 
 #board {

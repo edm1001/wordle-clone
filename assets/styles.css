@@ -11,7 +11,7 @@ body {
 }
 
 header{
-
+    border-bottom: 1px solid white;
 }
 .title {
     color: white;
@@ -20,6 +20,7 @@ header{
     font-family: 'Courier New', Courier, monospace;
     font-size: 3rem;
 }
+/* LETTER BOARD */
 #board-container {
     display: flex;
     justify-content: center;
@@ -40,4 +41,36 @@ header{
     min-width: 60px;
     min-height: 60px;
     font-weight: bold;
+}
+
+/* KEYBOARD */
+#keyboard-container {
+    height: 200px;
+}
+.keyboard-row {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    margin:0 auto 8px;
+    touch-action: manipulation;
+}
+.keyboard-row button{
+    font-family: inherit;
+    font-weight: bold;
+    border: 0;
+    padding: 0;
+    height: 60px;
+    cursor: pointer;
+    background-color: lightgray;
+    color: white;
+    flex-grow: 1;
+    text-transform: capitalize;
+    margin-right: 6px;
+}
+
+.keyboard-row button.wide-button {
+    flex-grow: 1.5;
+}
+.spacer-half {
+    flex-grow: 1;
 }

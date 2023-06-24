@@ -1,12 +1,16 @@
 document.addEventListener("DOMContentLoaded", () => {   
-    createBoxes()    
+    createBoxes();
 
     const guessedWords = [[]];
     let availableSpace = 1;
 
      let word = "books"
+     let guessedWordCount = 0;
+
     // responsive keyboard
     const keys = document.querySelectorAll('.keyboard-row button') //targetskeys
+
+
     function getCurrentWordArr() {
         const numberOfGuessedWords = guessedWords.length;
         return guessedWords[numberOfGuessedWords -1]
@@ -33,6 +37,20 @@ document.addEventListener("DOMContentLoaded", () => {
             window.alert("Must Be 5 letters")
         }
         const currentWord = currentWordArr.join('');
+        const firstLetterId = guessedWordCount * 5 + 1;
+        const interval = 250;
+        
+        currentWordArr.forEach((letter,index) => {
+            setTimeout(()=>{
+                const tileColor = "rgb(58,58,60)"
+
+                const letterId = firstLetterId + index;
+                const letterEl = document.getElementById(letterId);
+                letterEl.classList.add("animate__flipInX");
+                letterEl.style = `background-color:${tileColor};border-color:${tileColor}`;
+            }, interval * index);
+        });
+        guessedWords += 1;
 
         if (currentWord === word) {
             window.alert("Word Created")
@@ -54,6 +72,7 @@ document.addEventListener("DOMContentLoaded", () => {
         for (let index = 0; index < 30; index++) {
             let square = document.createElement("div");
             square.classList.add("square")
+            square.classList.add("animate__animated");
             square.setAttribute("id", index + 1);
             gameBoard.appendChild(square)
         }

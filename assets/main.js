@@ -37,7 +37,7 @@ document.addEventListener("DOMContentLoaded", () => {
             return "rgb(58,58,60)";
         }
         const letterInThatPosition = word.charAt(index)
-        const isCorrectPosition = letter = letterInThatPosition
+        const isCorrectPosition = letter === letterInThatPosition
 
         if(isCorrectPosition) {
             return "rgb(83, 141, 78)";
@@ -52,14 +52,14 @@ document.addEventListener("DOMContentLoaded", () => {
             window.alert("Must Be 5 letters")
         }
         const currentWord = currentWordArr.join('');
-        const firstLetterId = guessedWordCount * 5 + 1;
 
+
+
+        const firstLetterId = guessedWordCount * 5 + 1;
         const interval = 250;
-        
         currentWordArr.forEach((letter,index) => {
             setTimeout(()=>{
-                const tileColor = getTileColor(letter, index)
-
+                const tileColor = getTileColor(letter, index);
                 const letterId = firstLetterId + index;
                 const letterEl = document.getElementById(letterId);
                 letterEl.classList.add("animate__flipInX");
@@ -73,13 +73,23 @@ document.addEventListener("DOMContentLoaded", () => {
             
         }
         if (guessedWords.length === 6) {
-            window.alert(`The Word is ${word} , better luck next time!`)
+            window.alert(`The Word is ${word} , better luck next time!`);
         }
 
         guessedWords.push([]);
     }
+    // delete letters function
+    function handleDeleteLetter() {
+        const currentWordArr = getCurrentWordArr();
+        const removedLetter = currentWordArr.pop();
 
+        guessedWords[guessedWords.length-1] = currentWordArr;
 
+        const lastLetterEl = document.getElementById(String(availableSpace -1));
+
+        lastLetterEl.textContent = "";
+        availableSpace = availableSpace -1;
+    }
 
     // create boxed for the letters
     function createBoxes() {
@@ -98,6 +108,11 @@ document.addEventListener("DOMContentLoaded", () => {
             const letter = target.getAttribute("data-key")
             if(letter === 'enter') {
                 handleSubmitWord()
+                return;
+            }
+            if (letter === 'del') {
+                handleDeleteLetter()
+                return;
             }
 
             

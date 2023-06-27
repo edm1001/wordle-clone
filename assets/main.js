@@ -1,5 +1,6 @@
 document.addEventListener("DOMContentLoaded", () => {   
     createBoxes();
+    getNewWord();
 
     const guessedWords = [[]];
     let availableSpace = 1;
@@ -9,6 +10,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // responsive keyboard
     const keys = document.querySelectorAll('.keyboard-row button') //targetskeys
+    // const api_key = require('../config');
+
 
     function getNewWord() {
         fetch(
@@ -16,8 +19,8 @@ document.addEventListener("DOMContentLoaded", () => {
             {
                 method:"GET",
                 headers: {
-                    "x-rapidapi-host": "wordsapiv1.p.rapidapi.com",
-                    "x-rapidapi-key": "<Key Here>",
+                    "X-RapidAPI-Host": "wordsapiv1.p.rapidapi.com",
+                    'X-RapidAPI-Key': "APIKEYHERE",
                 }
             }
         )
@@ -73,6 +76,18 @@ document.addEventListener("DOMContentLoaded", () => {
             window.alert("Must Be 5 letters")
         }
         const currentWord = currentWordArr.join('');
+
+        fetch(
+            `https://wordsapiv1.p.rapidapi.com/words/${currentWord}`,
+            {
+                method:"GET",
+                headers: {
+                    
+                    "X-RapidAPI-Host": "wordsapiv1.p.rapidapi.com",
+                    'X-RapidAPI-Key': <'APIKEYHERE'>,
+                }
+            }
+        )
 
 
 

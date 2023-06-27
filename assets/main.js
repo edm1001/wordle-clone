@@ -1,7 +1,7 @@
 document.addEventListener("DOMContentLoaded", () => {   
     createBoxes();
     getNewWord();
-
+    
     const guessedWords = [[]];
     let availableSpace = 1;
 
@@ -10,7 +10,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // responsive keyboard
     const keys = document.querySelectorAll('.keyboard-row button') //targetskeys
-    // const api_key = require('../config');
+    
 
 
     function getNewWord() {
@@ -20,7 +20,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 method:"GET",
                 headers: {
                     "X-RapidAPI-Host": "wordsapiv1.p.rapidapi.com",
-                    'X-RapidAPI-Key': "APIKEYHERE",
+                    'X-RapidAPI-Key': "api_key",
                 }
             }
         )
@@ -84,10 +84,14 @@ document.addEventListener("DOMContentLoaded", () => {
                 headers: {
                     
                     "X-RapidAPI-Host": "wordsapiv1.p.rapidapi.com",
-                    'X-RapidAPI-Key': <'APIKEYHERE'>,
+                    'X-RapidAPI-Key': api_key,
                 }
             }
-        )
+        ), then((res) => {
+            if (!res.ok) {
+                throw Error()                
+            }
+      
 
 
 
@@ -113,6 +117,11 @@ document.addEventListener("DOMContentLoaded", () => {
         }
 
         guessedWords.push([]);
+
+    })
+    .catch(()=> {
+        window.alert("Word Not Found!")
+    });
     }
     // delete letters function
     function handleDeleteLetter() {
@@ -141,7 +150,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }
     for (let i = 0; i < keys.length; i++) {
         keys[i].onclick = ({target}) => {
-            const letter = target.getAttribute("data-key")
+            const letter = target.getAttribute("data-key");
             if(letter === 'enter') {
                 handleSubmitWord()
                 return;
@@ -151,12 +160,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 return;
             }
 
-            
-            updateGuessedWords(letter)
-            
-        }
-        
+            updateGuessedWords(letter)   
+        }   
     }
-    
-    
 })

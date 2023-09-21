@@ -20,6 +20,8 @@ Visit [Wordle](https://edm1001.github.io/wordle-clone/)
 ## Contributors
  Edmer Franciz Valencia
 
+---
+
 ## Question
 Contact me through either:
 [GitHub](https://github.com/edm1001)
